@@ -1,0 +1,290 @@
+uid: gs_roku_remote
+tags: []
+props:
+  parameters:
+    - context: item
+      description: An ActionItem from a Thing that has a binding on https://www.openhab.org/addons/bindings/roku/ Select RemoteButton
+      label: RokuStreamingStick RemoteButton
+      name: actionItem
+      required: false
+      type: TEXT
+    - description: The generic size on all icons on the buttons
+      label: Icon Size
+      name: iconSize
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Apr 2, 2021, 3:57:35 AM
+component: f7-card
+slots:
+  default:
+    - component: f7-card-header
+      config:
+        style:
+          - display: flex
+          - justify-content: center
+        class: no-border no-shadow outline
+      slots:
+        default:
+          - component: Label
+            config:
+              text: Roku Remote
+    - component: f7-card-content
+      config:
+      slots:
+        default:
+          - component: oh-block
+            config: {}
+            slots:
+              default:
+              - component: oh-grid-row
+                config: {}
+                slots:
+                  default:
+                    - component: oh-grid-col
+                      config: {}
+                      slots:
+                        default:
+                          - component: widget:gs_icon_card
+                            config:
+                              icon: f7:info_circle_filll
+                              actionItem: =props.actionItem
+                              action: command
+                              actionCommand: Info
+                              iconSize: =props.iconSize || "64"
+                              iconColor: blue
+                    - component: oh-grid-col
+                      config: {}
+                      slots:
+                        default:
+                          - component: widget:gs_icon_card
+                            config:
+                              icon: material:keyboard_backspace
+                              actionItem: =props.actionItem
+                              action: command
+                              actionCommand: Backspace
+                              iconSize: =props.iconSize || "64"
+                              iconColor: blue
+                    - component: oh-grid-col
+                      config: {}
+                      slots:
+                        default:
+                          - component: widget:gs_icon_card
+                            config:
+                              icon: f7:gobackward
+                              actionItem: =props.actionItem
+                              action: command
+                              actionCommand: Back
+                              iconSize: =props.iconSize || "64"
+                              iconColor: blue
+                    - component: oh-grid-col
+                      config: {}
+                      slots:
+                        default:
+                          - component: widget:gs_icon_card
+                            config:
+                              icon: f7:house_fill
+                              actionItem: =props.actionItem
+                              action: command
+                              actionCommand: Home
+                              iconSize: =props.iconSize || "64"
+                              iconColor: blue
+          - component: oh-block
+            config: {}
+            slots:
+              default:
+                - component: oh-grid-row
+                  config: {}
+                  slots:
+                    default:
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:backward_fill
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Rev
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:playpause_fill
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Play
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:forward_fill
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Fwd
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+          - component: oh-block
+            config: {}
+            slots:
+              default:
+                - component: oh-grid-row
+                  config: {}
+                  slots:
+                    default: []
+                - component: oh-grid-row
+                  config: {}
+                  slots:
+                    default:
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default: []
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:arrowtriangle_up
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Up
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default: []
+                - component: oh-grid-row
+                  config: {}
+                  slots:
+                    default: []
+          - component: oh-block
+            config: {}
+            slots:
+              default:
+                - component: oh-grid-row
+                  config: {}
+                  slots:
+                    default:
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:arrowtriangle_left
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Left
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:hand_thumbsup_fill
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Select
+                                iconSize: =props.iconSize || "64"
+                                iconColor: green
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:arrowtriangle_right
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Right
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+          - component: oh-block
+            config: {}
+            slots:
+              default:
+                - component: oh-grid-row
+                  config: {}
+                  slots:
+                    default:
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default: []
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:arrowtriangle_down
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Down
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default: []
+          - component: oh-block
+            config: {}
+            slots:
+              default:
+                - component: oh-grid-row
+                  config: {}
+                  slots:
+                    default:
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: material:replay_circle_filled
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: InstantReplay
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default: []
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:search_circle_fill
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Search
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+    - component: f7-card-footer
+      config:
+        class: no-border no-shadow outline
+        style:
+          - display: flex
+          - justify-content: flex-end
+      slots:
+        default:
+          - component: Label
+            config:
+              text: version 0.1.1
