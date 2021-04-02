@@ -1,0 +1,111 @@
+uid: gs_icon_card
+tags: []
+props:
+  parameters:
+    - description: Use oh:iconName (openHAB icon), f7:iconName (Framework7 icon) or material:iconName (Material icon)
+      label: Icon
+      name: icon
+      required: true
+    - context: item
+      description: Item we are executing our command through
+      label: Action Item
+      name: actionItem
+      required: true
+      type: TEXT
+    - context: actions
+      description: Action to perform when the element is clicked
+      label: Action
+      name: action
+      required: true
+      type: TEXT
+    - description: An action you wish to perform
+      label: Action Command
+      name: actionCommand
+      required: true
+      type: TEXT
+    - description: Header title of the card
+      label: Header
+      name: header
+      required: false
+      type: TEXT
+    - description: Footer of the card
+      label: Footer
+      name: footer
+      required: false
+      type: TEXT
+    - description: Set the Icon color
+      label: Icon Color (default is theame color)
+      name: iconColor
+      required: false
+      type: TEXT
+    - description: Set the Icon Size
+      label: Icon Color (default is 32)
+      name: iconSize
+      required: false
+      type: TEXT
+    - description: Set the Icon Badge a number
+      label: Icon Badge (default is empty)
+      name: iconBadge
+      required: false
+    - description: Set the Icon Badge Size
+      label: Icon Badge Size (default is 32px)
+      name: iconBadge
+      required: false
+    - description: Set the icon Badge
+      label: Icon Badge Color (default is theame color)
+      name: iconBadgeColor
+      required: false
+      type: TEXT
+  parameterGroups: []
+timestamp: Apr 2, 2021, 12:46:49 AM
+component: f7-card
+slots:
+  default:
+    - component: f7-card-header
+      config:
+        style:
+          - display: flex
+          - justify-content: center
+        class: '=(props.header) ?  "no-border no-shadow outline" : "display-none"'
+      slots:
+        default:
+          - component: Label
+            config:
+              text: =props.header
+    - component: f7-card-content
+      config:
+        padding: false
+      slots:
+        default:
+          - component: f7-row
+            slots:
+              default:
+                - component: f7-col
+                  config:
+                    style:
+                      - display: flex
+                  slots:
+                    default:
+                      - component: oh-link
+                        config:
+                          style: '=(props.iconSize) ? "height: " + props.iconSize + "px; display: flex; justify-content: center; width: 100%" :  "height: 32px;  display: flex; justify-content: center; width: 100%"'
+                          iconSize: =props.iconSize || 32
+                          iconF7: '=(props.icon.indexOf("f7:") === 0) ? props.icon.substring(3) :  ""'
+                          iconMaterial: '=(props.icon.indexOf("material:") === 0) ? props.icon.substring(9) :  ""'
+                          iconColor: '=(props.iconColor) ? props.iconColor :  ""'
+                          iconBadge: '=(props.iconBadge) ? props.iconBadge :  ""'
+                          badgeColor: '=(props.iconBadgeColor) ? props.iconBadgeColor :  ""'
+                          action: =props.action
+                          actionItem: =props.actionItem
+                          actionCommand: =props.actionCommand
+    - component: f7-card-footer
+      config:
+        class: '=(props.footer) ?  "no-border no-shadow outline" : "display-none"'
+        style:
+          - display: flex
+          - justify-content: center
+      slots:
+        default:
+          - component: Label
+            config:
+              text: '=(props.footer) ? props.footer : ""'
