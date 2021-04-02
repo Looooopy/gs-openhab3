@@ -8,18 +8,22 @@ props:
       name: actionItem
       required: false
       type: TEXT
-    - description: The generic size on all icons on the buttons
+    - description: The generic size on all icons on the buttons (default 64px)
       label: Icon Size
       name: iconSize
-      required: false
       type: TEXT
+    - description: Hide tile row when any text is added (default show)
+      label: hideTitle
+      name: hideTitle
+      required: false
   parameterGroups: []
-timestamp: Apr 2, 2021, 3:57:35 AM
+timestamp: Apr 2, 2021, 4:47:41 AM
 component: f7-card
 slots:
   default:
     - component: f7-card-header
       config:
+        visible: "=(props.hideTitle) ? false : true"
         style:
           - display: flex
           - justify-content: center
@@ -30,65 +34,64 @@ slots:
             config:
               text: Roku Remote
     - component: f7-card-content
-      config:
       slots:
         default:
           - component: oh-block
             config: {}
             slots:
               default:
-              - component: oh-grid-row
-                config: {}
-                slots:
-                  default:
-                    - component: oh-grid-col
-                      config: {}
-                      slots:
-                        default:
-                          - component: widget:gs_icon_card
-                            config:
-                              icon: f7:info_circle_filll
-                              actionItem: =props.actionItem
-                              action: command
-                              actionCommand: Info
-                              iconSize: =props.iconSize || "64"
-                              iconColor: blue
-                    - component: oh-grid-col
-                      config: {}
-                      slots:
-                        default:
-                          - component: widget:gs_icon_card
-                            config:
-                              icon: material:keyboard_backspace
-                              actionItem: =props.actionItem
-                              action: command
-                              actionCommand: Backspace
-                              iconSize: =props.iconSize || "64"
-                              iconColor: blue
-                    - component: oh-grid-col
-                      config: {}
-                      slots:
-                        default:
-                          - component: widget:gs_icon_card
-                            config:
-                              icon: f7:gobackward
-                              actionItem: =props.actionItem
-                              action: command
-                              actionCommand: Back
-                              iconSize: =props.iconSize || "64"
-                              iconColor: blue
-                    - component: oh-grid-col
-                      config: {}
-                      slots:
-                        default:
-                          - component: widget:gs_icon_card
-                            config:
-                              icon: f7:house_fill
-                              actionItem: =props.actionItem
-                              action: command
-                              actionCommand: Home
-                              iconSize: =props.iconSize || "64"
-                              iconColor: blue
+                - component: oh-grid-row
+                  config: {}
+                  slots:
+                    default:
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:info_circle_filll
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Info
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: material:keyboard_backspace
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Backspace
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:gobackward
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Back
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
+                      - component: oh-grid-col
+                        config: {}
+                        slots:
+                          default:
+                            - component: widget:gs_icon_card
+                              config:
+                                icon: f7:house_fill
+                                actionItem: =props.actionItem
+                                action: command
+                                actionCommand: Home
+                                iconSize: =props.iconSize || "64"
+                                iconColor: blue
           - component: oh-block
             config: {}
             slots:
@@ -287,4 +290,4 @@ slots:
         default:
           - component: Label
             config:
-              text: version 0.1.1
+              text: GS Roku Remote version 0.1.2
