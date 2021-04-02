@@ -88,7 +88,7 @@ slots:
                     default:
                       - component: oh-button
                         config:
-                          style: '=(props.iconSize) ? "height: " + props.iconSize + "px; display: flex; justify-content: center; width: 100%" :  "height: 32px;  display: flex; justify-content: center; width: 100%"'
+                          style: '=(props.iconSize) ? "height: " + props.iconSize + "px; display: flex; justify-content: center; width: 100%" : "height: 32px; display: flex; justify-content: center; width: 100%"'
                           iconSize: =props.iconSize || 32
                           iconF7: '=(props.icon.indexOf("f7:") === 0) ? props.icon.substring(3) :  ""'
                           iconMaterial: '=(props.icon.indexOf("material:") === 0) ? props.icon.substring(9) :  ""'

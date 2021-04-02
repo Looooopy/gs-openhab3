@@ -6,18 +6,25 @@ props:
       description: An ActionItem from a Thing that has a binding on https://www.openhab.org/addons/bindings/roku/ Select RemoteButton
       label: RokuStreamingStick RemoteButton
       name: actionItem
+      required: true
+      type: TEXT
+    - context: item
+      description: An ActionItem from a Thing that has a binding on https://www.openhab.org/addons/bindings/roku/ Select ActiveApp
+      label: RokuStreamingStick ActiveApp
+      name: activeAppItem
       required: false
       type: TEXT
     - description: The generic size on all icons on the buttons (default 64px)
       label: Icon Size
       name: iconSize
+      required: false
       type: TEXT
     - description: Hide tile row when any text is added (default show)
       label: hideTitle
       name: hideTitle
       required: false
   parameterGroups: []
-timestamp: Apr 2, 2021, 4:47:41 AM
+timestamp: Apr 2, 2021, 1:08:15 PM
 component: f7-card
 slots:
   default:
@@ -285,9 +292,13 @@ slots:
         class: no-border no-shadow outline
         style:
           - display: flex
-          - justify-content: flex-end
       slots:
         default:
           - component: Label
             config:
-              text: GS Roku Remote version 0.1.2
+              text: '=(props.activeAppItem) ? "Active App: " + items[props.activeAppItem].displayState : "Active App: None"'
+          - component: Label
+            config:
+              text: GS Roku Remote version 0.1.3
+              style:
+                - margin-left: auto
