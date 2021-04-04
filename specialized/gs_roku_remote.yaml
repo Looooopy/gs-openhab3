@@ -1,30 +1,58 @@
 uid: gs_roku_remote
-tags: []
+tags:
+  - 3.1.0.M3
 props:
   parameters:
     - context: item
-      description: An ActionItem from a Thing that has a binding on https://www.openhab.org/addons/bindings/roku/ Select RemoteButton
-      label: RokuStreamingStick RemoteButton
+      description: An ActionItem from a Thing that has a <a class="external text-color-blue" target="_blank" href="https://www.openhab.org/addons/bindings/roku/">Roku Binding</a>
+      label: Select RemoteButton
       name: actionItem
       required: true
       type: TEXT
+      groupName: rokuAction
     - context: item
-      description: An ActionItem from a Thing that has a binding on https://www.openhab.org/addons/bindings/roku/ Select ActiveApp
-      label: RokuStreamingStick ActiveApp
+      description: An ActionItem from a Thing that has a <a class="external text-color-blue" target="_blank" href="https://www.openhab.org/addons/bindings/roku/">Roku Binding</a>
+      label: Select ActiveApp
       name: activeAppItem
       required: false
       type: TEXT
+      groupName: rokuAction
+    - description: Hide tile row when any text is added (default show)
+      label: Hide Title
+      name: hideTitle
+      required: false
+      type: BOOLEAN
+      groupName: generalSettings
+    - description: Use oh-link as a button (default oh-button)
+      label: Use link
+      name: useLink
+      required: false
+      type: BOOLEAN
+      groupName: generalSettings
     - description: The generic size on all icons on the buttons (default 64px)
       label: Icon Size
       name: iconSize
       required: false
       type: TEXT
-    - description: Hide tile row when any text is added (default show)
-      label: hideTitle
-      name: hideTitle
+      groupName: icon
+    - description: Debug output props in the footer
+      name: debugProps
       required: false
-  parameterGroups: []
-timestamp: Apr 2, 2021, 1:08:15 PM
+      type: BOOLEAN
+      groupName: debugging
+  parameterGroups:
+    - name: rokuAction
+      context: item
+      label: Roku Actions
+    - name: icon
+      context: item
+      label: Icon Settings
+    - name: generalSettings
+      context: item
+      label: General Settings
+    - name: debugging
+      label: Debug Settings
+timestamp: Apr 4, 2021, 11:44:09 PM
 component: f7-card
 slots:
   default:
@@ -55,50 +83,50 @@ slots:
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Info
                                 icon: f7:info_circle_filll
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Info
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Backspace
                                 icon: material:keyboard_backspace
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Backspace
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Back
                                 icon: f7:gobackward
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Back
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Home
                                 icon: f7:house_fill
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Home
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
           - component: oh-block
             config: {}
             slots:
@@ -111,38 +139,38 @@ slots:
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Rev
                                 icon: f7:backward_fill
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Rev
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Play
                                 icon: f7:playpause_fill
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Play
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Fwd
                                 icon: f7:forward_fill
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Fwd
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
           - component: oh-block
             config: {}
             slots:
@@ -163,14 +191,14 @@ slots:
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Up
                                 icon: f7:arrowtriangle_up
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Up
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
                         config: {}
                         slots:
@@ -191,38 +219,39 @@ slots:
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Left
                                 icon: f7:arrowtriangle_left
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Left
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Select
                                 icon: f7:hand_thumbsup_fill
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Select
-                                iconSize: =props.iconSize || "64"
+                                iconSize: =props.iconSize
                                 iconColor: green
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Right
                                 icon: f7:arrowtriangle_right
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Right
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
           - component: oh-block
             config: {}
             slots:
@@ -239,14 +268,14 @@ slots:
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Down
                                 icon: f7:arrowtriangle_down
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Down
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
                         config: {}
                         slots:
@@ -263,30 +292,39 @@ slots:
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: InstantReplay
                                 icon: material:replay_circle_filled
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: InstantReplay
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
                       - component: oh-grid-col
-                        config: {}
+                        config:
+                          style:
+                            - display: flex
+                            - background-color: grey
                         slots:
-                          default: []
+                          default:
+                            - component: Label
+                              config:
+                                text: '=(props.activeAppItem) ? "Active App: " + items[props.activeAppItem].displayState : "Active App: None"'
+                            - component: Label
+                              config:
+                                text: '=(props.activeAppItem) ? "Active App: " + items[props.activeAppItem].displayState : "Active App: None"'
                       - component: oh-grid-col
                         config: {}
                         slots:
                           default:
-                            - component: widget:gs_icon_card
+                            - component: widget:gs_roku_icon_card
                               config:
+                                button_actionItem: =props.actionItem
+                                button_actionCommand: Search
                                 icon: f7:search_circle_fill
-                                actionItem: =props.actionItem
-                                action: command
-                                actionCommand: Search
-                                iconSize: =props.iconSize || "64"
-                                iconColor: blue
+                                iconSize: =props.iconSize
+                                useLink: =props.useLink
+                                debugProps: =props.debugProps
     - component: f7-card-footer
       config:
         class: no-border no-shadow outline
@@ -296,9 +334,10 @@ slots:
         default:
           - component: Label
             config:
-              text: '=(props.activeAppItem) ? "Active App: " + items[props.activeAppItem].displayState : "Active App: None"'
+              visible: =props.debugProps
+              text: =JSON.stringify(props, null, 4)
           - component: Label
             config:
-              text: GS Roku Remote version 0.1.3
+              text: "GS Roku Remote v: 0.1.4"
               style:
                 - margin-left: auto

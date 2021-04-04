@@ -1,68 +1,87 @@
 uid: gs_icon_card
-tags: []
+tags:
+  - 3.1.0.M3
 props:
   parameters:
     - description: Use oh:iconName (openHAB icon), f7:iconName (Framework7 icon) or material:iconName (Material icon)
       label: Icon
       name: icon
       required: true
-    - context: item
-      description: Item we are executing our command through
-      label: Action Item
-      name: actionItem
-      required: true
-      type: TEXT
-    - context: actions
-      description: Action to perform when the element is clicked
-      label: Action
-      name: action
-      required: true
-      type: TEXT
-    - description: An action you wish to perform
-      label: Action Command
-      name: actionCommand
-      required: true
-      type: TEXT
-    - description: Header title of the card
-      label: Header
-      name: header
-      required: false
-      type: TEXT
-    - description: Footer of the card
-      label: Footer
-      name: footer
-      required: false
-      type: TEXT
+      groupName: buttonIcon
     - description: Set the Icon color
       label: Icon Color (default is theame color)
       name: iconColor
       required: false
       type: TEXT
+      groupName: buttonIcon
     - description: Set the Icon Size
       label: Icon Color (default is 32)
       name: iconSize
       required: false
       type: TEXT
-    - description: Set the Icon Badge a number
+      groupName: buttonIcon
+    - description: Set the Icon Badge content (requires to enable 'Use Link')
       label: Icon Badge (default is empty)
       name: iconBadge
       required: false
-    - description: Set the Icon Badge Size
-      label: Icon Badge Size (default is 32px)
-      name: iconBadge
-      required: false
-    - description: Set the icon Badge
+      type: TEXT
+      groupName: buttonBadge
+    - description: Set the icon Badge (requires to enable 'Use Link')
       label: Icon Badge Color (default is theame color)
       name: iconBadgeColor
       required: false
       type: TEXT
-  parameterGroups: []
-timestamp: Apr 2, 2021, 1:58:56 PM
+      groupName: buttonBadge
+    - description: Title of the card
+      label: Header
+      name: header
+      required: false
+      type: TEXT
+      groupName: generalSettings
+    - description: Footer of the card
+      label: Footer
+      name: footer
+      required: false
+      type: TEXT
+      groupName: generalSettings
+    - description: Use link instead of button (default button)
+      label: Use Link
+      name: useLink
+      required: false
+      type: BOOLEAN
+      groupName: generalSettings
+    - description: Debug output props in the footer
+      name: debugProps
+      required: false
+      type: BOOLEAN
+      groupName: debugging
+  parameterGroups:
+    - name: buttonAction
+      context: action
+      label: Button Action
+    - name: buttonIcon
+      label: Button Icon
+    - name: buttonBadge
+      label: Button Badge
+    - name: generalSettings
+      context: item
+      label: General Settings
+    - name: debugging
+      label: Debug Settings
+timestamp: Apr 4, 2021, 11:42:53 PM
 component: f7-card
+config:
+  stylesheet: >
+    .gs-icon {
+      display: flex; 
+      justify-content: center;
+      width: 100%;
+    }
 slots:
   default:
     - component: f7-card-header
       config:
+        visible: "=(props.header) ? true : false"
         style:
           - display: flex
           - justify-content: center
@@ -88,19 +107,29 @@ slots:
                     default:
                       - component: oh-button
                         config:
-                          style: '=(props.iconSize) ? "height: " + props.iconSize + "px; display: flex; justify-content: center; width: 100%" : "height: 32px; display: flex; justify-content: center; width: 100%"'
+                          visible: "=(props.useLink) ? false : true"
+                          style: '=(props.iconSize) ? "height: " + props.iconSize + "px" : "height: 32px;"'
+                          class: gs-icon
+                          iconSize: =props.iconSize || 32
+                          iconF7: '=(props.icon.indexOf("f7:") === 0) ? props.icon.substring(3) :  ""'
+                          iconMaterial: '=(props.icon.indexOf("material:") === 0) ? props.icon.substring(9) :  ""'
+                          iconColor: '=(props.iconColor) ? props.iconColor :  ""'
+                          actionPropsParameterGroup: buttonAction
+                      - component: oh-link
+                        config:
+                          visible: "=(props.useLink) ? true : false"
+                          style: '=(props.iconSize) ? "height: " + props.iconSize + "px" : "height: 32px;"'
+                          class: gs-icon
                           iconSize: =props.iconSize || 32
                           iconF7: '=(props.icon.indexOf("f7:") === 0) ? props.icon.substring(3) :  ""'
                           iconMaterial: '=(props.icon.indexOf("material:") === 0) ? props.icon.substring(9) :  ""'
                           iconColor: '=(props.iconColor) ? props.iconColor :  ""'
                           iconBadge: '=(props.iconBadge) ? props.iconBadge :  ""'
                           badgeColor: '=(props.iconBadgeColor) ? props.iconBadgeColor :  ""'
-                          action: =props.action
-                          actionItem: =props.actionItem
-                          actionCommand: =props.actionCommand
+                          actionPropsParameterGroup: buttonAction
     - component: f7-card-footer
       config:
-        class: '=(props.footer) ?  "no-border no-shadow outline" : "display-none"'
+        visible: "=(props.debugProps || props.footer) ? true : false"
         style:
           - display: flex
           - justify-content: center
@@ -108,4 +137,9 @@ slots:
         default:
           - component: Label
             config:
+              visible: "=(props.footer) ? true : false"
               text: '=(props.footer) ? props.footer : ""'
+          - component: Label
+            config:
+              visible: "=(props.debugProps) ? true : false"
+              text: =JSON.stringify(props, null, 4)
