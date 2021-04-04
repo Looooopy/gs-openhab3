@@ -1,6 +1,6 @@
 # GS Openhab 3
 
-Custom setup for openhab 3.
+Custom setup for openhab 3.1.0.M3
 
 ## Wigets
 
