@@ -8,11 +8,13 @@ Custom widget library
 
 ### Specialized
 
-Here you will find widgets that has dependencies on Thing and/or Binding  
+Widgets that has dependencies on Thing and/or Binding, this repository, [openhab-webui components](https://github.com/openhab/openhab-webui/tree/main/bundles/org.openhab.ui/doc/components) and/or on [Framework7](https://framework7.io/).
 
 #### Roku Remote
 
-This remote is designed and tested with Roku Streaming stick + but binding statets it will work with a TV aswell but those commands are not mapped in this remote.
+[Roku remote](/specialized/gs_roku_remote.yaml)
+
+This remote is designed and tested with Roku Streaming stick + but in the [Roku Openhab Binding](https://www.openhab.org/addons/bindings/roku/) they state it will work with a TV as well but those commands are not mapped in this remote.
 
 #### Dependencies
 
@@ -32,13 +34,13 @@ This remote is designed and tested with Roku Streaming stick + but binding state
 
 ### Common
 
-The most reusable widgets that has only dependencies to openhab 3.
+Widgets that has dependencies only to openhab 3 or [Framework7](https://framework7.io/) that [openhab-webui](https://github.com/openhab/openhab-webui) utilizes.
 
 #### Icon card
 
-[Icon card](/common/gs_icon_card)
+[Icon card](/common/gs_icon_card.yaml)
 
-This widgets can be used with only a icon and no text, useful when doing my own remote.
+This widgets can be used with only a icon and no text, useful when doing a remote.
 
 It's built like the oh-label-card with a title and footer but its not required.
 
