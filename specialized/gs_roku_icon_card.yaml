@@ -72,6 +72,7 @@ timestamp: Apr 4, 2021, 11:41:59 PM
 component: f7-block
 config:
   button_action: command
+  class: no-margin no-padding
 slots:
   default:
     - component: widget:gs_icon_card
