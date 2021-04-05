@@ -42,17 +42,14 @@ props:
       groupName: debugging
   parameterGroups:
     - name: rokuAction
-      context: item
       label: Roku Actions
     - name: icon
-      context: item
       label: Icon Settings
     - name: generalSettings
-      context: item
       label: General Settings
     - name: debugging
       label: Debug Settings
-timestamp: Apr 4, 2021, 11:44:09 PM
+timestamp: Apr 5, 2021, 1:35:55 AM
 component: f7-card
 slots:
   default:
@@ -307,9 +304,6 @@ slots:
                             - background-color: grey
                         slots:
                           default:
-                            - component: Label
-                              config:
-                                text: '=(props.activeAppItem) ? "Active App: " + items[props.activeAppItem].displayState : "Active App: None"'
                             - component: Label
                               config:
                                 text: '=(props.activeAppItem) ? "Active App: " + items[props.activeAppItem].displayState : "Active App: None"'
