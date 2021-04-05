@@ -332,6 +332,6 @@ slots:
               text: =JSON.stringify(props, null, 4)
           - component: Label
             config:
-              text: "GS Roku Remote v: 0.1.4"
+              text: "GS Roku Remote v: 0.1.5"
               style:
                 - margin-left: auto
